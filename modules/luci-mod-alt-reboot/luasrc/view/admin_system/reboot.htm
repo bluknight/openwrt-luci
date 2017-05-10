@@ -8,27 +8,31 @@
 <%+header%>
 
 <%-
--- device, part1, part2, offset, env_var_1, value_1_1, value_2_2, env_var_2, value_2_1, value_2_2
+-- device, board_name, part1, part2, offset, env_var_1, value_1_1, value_1_2, env_var_2, value_2_1, value_2_2
 devices = {
-  {"armada-385-linksys-rango", "mtd5", "mtd7", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
-  {"wrt1900acs", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
-  {"ea8500", "mtd13", "mtd15", 32, "boot_part", 1, 2}
+  {"Linksys WRT1200AC", "armada-385-linksys-caiman", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys WRT1900AC", "armada-xp-linksys-mamba", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys WRT1900ACv2", "armada-385-linksys-cobra", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys WRT1900ACS", "armada-385-linksys-shelby", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys WRT3200ACM", "armada-385-linksys-rango", "mtd5", "mtd7", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys EA8500", "ea8500", "mtd13", "mtd15", 32, "boot_part", 1, 2}
+--  "Linksys E4200v2/EA4500", "linksys-viper",
 }
 
 board_name = luci.util.trim(luci.sys.exec("cat /tmp/sysinfo/board_name"))
 -- check if board_name is not nil?
 for i=1, #devices do
-  if devices[i][1] == board_name then
+  if devices[i][2] == board_name then
     device_name = devices[i][1]
-    partition_one_mtd = devices[i][2] or nil
-    partition_two_mtd = devices[i][3] or nil
-    partition_skip = devices[i][4] or nil
-    boot_envvar1 = devices[i][5] or nil
-    boot_envvar1_partition_one = tonumber(devices[i][6]) or nil
-    boot_envvar1_partition_two = tonumber(devices[i][7]) or nil
-    boot_envvar2 = devices[i][8] or nil
-    boot_envvar2_partition_one = devices[i][9] or nil
-    boot_envvar2_partition_two = devices[i][10] or nil
+    partition_one_mtd = devices[i][3] or nil
+    partition_two_mtd = devices[i][4] or nil
+    partition_skip = devices[i][5] or nil
+    boot_envvar1 = devices[i][6] or nil
+    boot_envvar1_partition_one = tonumber(devices[i][7]) or nil
+    boot_envvar1_partition_two = tonumber(devices[i][8]) or nil
+    boot_envvar2 = devices[i][9] or nil
+    boot_envvar2_partition_one = devices[i][10] or nil
+    boot_envvar2_partition_two = devices[i][11] or nil
 
     partition_one_label = luci.util.trim(luci.sys.exec("dd if=/dev/" .. partition_one_mtd .. " bs=1 skip=" .. partition_skip .. " count=25"))
     partition_two_label = luci.util.trim(luci.sys.exec("dd if=/dev/" .. partition_two_mtd .. " bs=1 skip=" .. partition_skip .. " count=25"))

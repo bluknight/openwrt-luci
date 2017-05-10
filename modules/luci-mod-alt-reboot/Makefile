@@ -8,7 +8,7 @@ PKG_MAINTAINER:=Stan Grishin <stangri@melmac.net>
 
 LUCI_TITLE:=Alternative Partition Reboot Web UI
 LUCI_PKGARCH:=all
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 include ../../luci.mk
 
