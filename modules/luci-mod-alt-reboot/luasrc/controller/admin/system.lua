@@ -398,7 +398,7 @@ function action_alt_reboot()
 end
 
 function action_poweroff()
-	luci.sys.call("/sbin/poweroff") end
+	luci.sys.call("/sbin/poweroff")
 end
 
 function fork_exec(command)
