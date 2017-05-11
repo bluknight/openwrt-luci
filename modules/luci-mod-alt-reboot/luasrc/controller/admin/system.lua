@@ -44,6 +44,7 @@ function index()
 	entry({"admin", "system", "reboot"}, template("admin_system/reboot"), _("Reboot"), 90)
 	entry({"admin", "system", "reboot", "call"}, post("action_reboot"))
 	entry({"admin", "system", "reboot", "altcall"}, post("action_alt_reboot"))
+	entry({"admin", "system", "reboot", "poweroff"}, post("action_poweroff"))
 end
 
 function action_clock_status()
@@ -394,6 +395,10 @@ function action_alt_reboot()
   if boot == "run altnandboot" then luci.sys.call("/usr/sbin/fw_setenv bootcmd 'run nandboot'") end
   if boot == "run nandboot" then luci.sys.call("/usr/sbin/fw_setenv bootcmd 'run altnandboot'") end
 	luci.sys.reboot()
+end
+
+function action_poweroff()
+	luci.sys.call("/sbin/poweroff") end
 end
 
 function fork_exec(command)

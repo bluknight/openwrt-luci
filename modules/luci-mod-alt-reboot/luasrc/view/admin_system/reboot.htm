@@ -109,16 +109,31 @@ end
 
 		(new XHR()).post('<%=controller%>/admin/system/reboot/altcall', { token: '<%=token%>' }, check);
 	}
+
+function poweroff(button) {
+  button.style.display = 'none';
+  document.getElementById('poweroff-message').parentNode.style.display = '';
+
+  (new XHR()).post('<%=controller%>/admin/system/reboot/poweroff', { token: '<%=token%>' }, check);
+}
 //]]></script>
 
 <input class="cbi-button cbi-button-apply" type="button" value="<%:Perform reboot%>" onclick="reboot(this)" />
 <%- if device_name then -%>
 <input class="cbi-button cbi-button-apply" type="button" value="<%:Perform reboot to partition:%><%=" " .. other_partition%>" onclick="altreboot(this)" />
 <%- end -%>
+<%- if nixio.fs.access("/sbin/poweroff") then -%>
+<input class="cbi-button cbi-button-apply" type="button" value="<%:Perform power off%>" onclick="poweroff(this)" />
+<%- end -%>
 
 <p class="alert-message" style="display:none">
 	<img src="<%=resource%>/icons/loading.gif" alt="<%:Loading%>" style="vertical-align:middle" />
 	<span id="reboot-message"><%:Device is rebooting...%></span>
+</p>
+
+<p class="alert-message" style="display:none">
+	<img src="<%=resource%>/icons/loading.gif" alt="<%:Loading%>" style="vertical-align:middle" />
+	<span id="poweroff-message"><%:Device is powering off...%></span>
 </p>
 
 <%+footer%>
