@@ -10,6 +10,8 @@ Currently supported devices include:
 - Linksys WRT1900ACv2
 - Linksys WRT1900ACS
 - Linksys WRT3200ACM
+- Linksys E4200v2
+- Linksys EA4500
 - Linksys EA8500
 
 If you're interested in having your device supported, please check [LEDE Projet Forum Support Thread](https://forum.lede-project.org/t/web-ui-to-reboot-to-another-partition-dual-partition-routers/3423).
@@ -46,4 +48,4 @@ opkg update
 - Some devices allow you to trigger reboot to alternative partition by interrupting boot 3 times in a row (by resetting/switching off the device or pulling power). As these methods might be different for different devices, do your own homework.
 
 ## Thanks
-I'd like to thank everyone who helped create, test and troubleshoot this service. Without contributions from [@hnyman](https://github.com/hnyman), it wouldn't have been possible.
+I'd like to thank everyone who helped create, test and troubleshoot this package. Without contributions from [@hnyman](https://github.com/hnyman), it wouldn't have been possible.

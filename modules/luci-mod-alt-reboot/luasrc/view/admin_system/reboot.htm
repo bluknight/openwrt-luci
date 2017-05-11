@@ -15,8 +15,8 @@ devices = {
   {"Linksys WRT1900ACv2", "armada-385-linksys-cobra", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
   {"Linksys WRT1900ACS", "armada-385-linksys-shelby", "mtd4", "mtd6", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
   {"Linksys WRT3200ACM", "armada-385-linksys-rango", "mtd5", "mtd7", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
+  {"Linksys E4200v2/EA4500", "linksys-viper", "mtd3", "mtd5", 32, "boot_part", 1, 2, "bootcmd", "run nandboot", "run altnandboot"},
   {"Linksys EA8500", "ea8500", "mtd13", "mtd15", 32, "boot_part", 1, 2}
---  "Linksys E4200v2/EA4500", "linksys-viper",
 }
 
 board_name = luci.util.trim(luci.sys.exec("cat /tmp/sysinfo/board_name"))
