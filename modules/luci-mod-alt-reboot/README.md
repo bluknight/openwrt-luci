@@ -41,6 +41,12 @@ echo -e -n 'untrusted comment: public key 7ffc7517c4cc0c56\nRWR//HUXxMwMVnx7fESO
 ! grep -q 'stangri_repo' /etc/opkg/customfeeds.conf && echo 'src/gz stangri_repo https://raw.githubusercontent.com/stangri/openwrt-repo/master' >> /etc/opkg/customfeeds.conf
 opkg update
 ```
+## How to uninstall
+Run the following commands in ssh session to your router:
+```sh
+cp /rom/usr/lib/lua/luci/controller/admin/system.lua /usr/lib/lua/luci/controller/admin/system.lua
+cp /rom/usr/lib/lua/luci/view/admin_system/reboot.htm /usr/lib/lua/luci/view/admin_system/reboot.htm
+```
 
 ## Notes/Known Issues
 - When you reboot to a different partition, your current settings (Wireless, etc.) will not apply to a different partition. Different partitions might have completely different settings and firmware.
