@@ -1,0 +1,10 @@
+#!/bin/sh
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@noddos[-1]
+	add ucitrack noddos
+	set ucitrack.@noddos[-1].init=noddos
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0
