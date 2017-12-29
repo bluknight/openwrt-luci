@@ -68,6 +68,7 @@ luci.model.uci.cursor():foreach("network", "interface", function(s)
 	local proto=s['proto']
 	if name then
 		if ifname and string.sub(ifname,0,3) == "tun" then icmp:value(name,string.upper(name)) end
+		if ifname and string.sub(ifname,0,3) == "tap" then icmp:value(name,string.upper(name)) end
 		if proto and string.sub(proto,0,9) == "wireguard" then icmp:value(name,string.upper(name)) end
 		if proto and string.sub(proto,0,11) == "openconnect" then icmp:value(name,string.upper(name)) end
 	end
@@ -117,6 +118,7 @@ luci.model.uci.cursor():foreach("network", "interface", function(s)
 	local proto=s['proto']
 	if name then
 		if ifname and string.sub(ifname,0,3) == "tun" then gw:value(name, string.upper(name)) end
+		if ifname and string.sub(ifname,0,3) == "tap" then gw:value(name, string.upper(name)) end
 		if proto and string.sub(proto,0,9) == "wireguard" then gw:value(name, string.upper(name)) end
 		if proto and string.sub(proto,0,11) == "openconnect" then gw:value(name, string.upper(name)) end
 	end
@@ -133,6 +135,7 @@ luci.model.uci.cursor():foreach("network", "interface", function(s)
 	local proto=s['proto']
 	if name then
 		if ifname and string.sub(ifname,0,3) == "tun" then s6:option(Value, name .. "_dscp", string.upper(name) .. " " .. translate("DSCP Tag")).rmempty = true end
+		if ifname and string.sub(ifname,0,3) == "tap" then s6:option(Value, name .. "_dscp", string.upper(name) .. " " .. translate("DSCP Tag")).rmempty = true end
 		if proto and string.sub(proto,0,9) == "wireguard" then s6:option(Value, name .. "_dscp", string.upper(name) .. " " .. translate("DSCP Tag")).rmempty = true end
 		if proto and string.sub(proto,0,11) == "openconnect" then s6:option(Value, name .. "_dscp", string.upper(name) .. " " .. translate("DSCP Tag")).rmempty = true end
 	end
